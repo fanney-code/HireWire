@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Your general CSS file -->
+    <link rel="stylesheet" href="/static/dashboard.css"> <!-- Dashboard-specific CSS file -->
+    <title>Dashboard</title>
+    <style>
+        /* Dashboard Container */
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            height: 100vh; /* Full height */
+            background: url('/static/backgr.jpg') no-repeat center center fixed; /* Set your background image */
+            background-size: cover; /* Cover the entire background */
+            color: white; /* White text for contrast */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Profile Icon Container */
+        .profile-icon-container {
+            display: flex;
+            align-items: center; /* Center icon and name vertically */
+            position: absolute; /* Position at the top */
+            top: 20px; /* Distance from the top */
+            left: 20px; /* Distance from the left */
+        }
+
+        /* Profile Icon Animation */
+        .dashboard-profile-icon {
+            width: 50px; /* Adjust as needed */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 50%; /* Circular profile icon */
+            cursor: pointer; /* Pointer cursor on hover */
+            animation: bounce 1s infinite alternate; /* Bounce animation */
+        }
+
+        /* Profile Info Section */
+        .profile-info {
+            margin-top: 80px; /* Space above */
+            text-align: center;
+            background-color: rgba(30, 30, 30, 0.8); /* Slightly transparent background */
+            padding: 20px; /* Padding around the profile info */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow for profile info */
+        }
+
+        /* Dashboard Image Animation */
+        .dashboard-image {
+            opacity: 0; /* Start hidden */
+            transition: opacity 1s ease-in; /* Smooth transition */
+        }
+
+        /* AI Prompt Styles */
+        .ai-prompt {
+            margin-top: 20px; /* Space above */
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: space-around; /* Space between buttons */
+            margin-top: 20px; /* Space above buttons */
+        }
+
+        /* Button Styles */
+        .action-button, .ai-button, .close-profile-button {
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s; /* Added transform for scale */
+        }
+
+        .action-button:hover, .ai-button:hover, .close-profile-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+            transform: scale(1.05); /* Scale up on hover */
+        }
+
+        /* Keyframes for animations */
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Profile Icon at the top -->
+        <div class="profile-icon-container">
+            <img src="/static/profile.jpg" alt="Profile Icon" class="dashboard-profile-icon" id="profile-icon">
+            <h2 id="userName" class="profile-name">John Doe</h2>
+        </div>
+
+        <div class="profile-info" id="profileInfo" style="display: none;">
+            <h3>More Information</h3>
+            <p>Progress: <span id="userProgress">75%</span></p>
+            <p>Experience: <span id="userExperience">2 years in Software Development</span></p>
+            <p>Current Projects: <span id="userProjects">AI Chatbot, E-commerce Platform</span></p>
+            <button id="close-profile-button" class="close-profile-button">Close</button>
+        </div>
+
+        <img src="/static/dashboard.png" alt="Dashboard" class="dashboard-image" id="dashboardImage">
+
+        <div class="ai-prompt">
+            <input type="text" placeholder="Ask AI anything..." id="ai-input" class="ai-input">
+            <button id="ask-ai-button" class="ai-button">Ask</button>
+        </div>
+
+        <div class="action-buttons">
+            <button id="practice-button" class="action-button">Practice</button>
+            <button id="results-button" class="action-button">Results</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fade in profile icon
+            $('#profile-icon').hide().fadeIn(1000);
+
+            // Animate dashboard image
+            $('#dashboardImage').css({ opacity: 0 }).animate({ opacity: 1 }, 1500);
+
+            // Profile icon click event
+            $('#profile-icon').click(function() {
+                $('#profileInfo').slideToggle(400); // Slide toggle animation for profile info
+            });
+
+            // Close profile button click event
+            $('#close-profile-button').click(function() {
+                $('#profileInfo').slideUp(400); // Slide up animation to hide profile info
+            });
+
+            // AI prompt input focus animation
+            $('.ai-input').focus(function() {
+                $(this).animate({ width: '+=20px' }, 300);
+            }).blur(function() {
+                $(this).animate({ width: '-=20px' }, 300);
+            });
+
+            // Ask AI button click event
+            $('#ask-ai-button').click(function() {
+                const input = $('#ai-input').val();
+                alert(`You asked: ${input}`);
+                $('#ai-input').val(''); // Clear input field
+            });
+
+            // Practice button click event
+            $('#practice-button').click(function() {
+                $(this).animate({ backgroundColor: "#45a049" }, 300)
+                    .animate({ backgroundColor: "#4CAF50" }, 300);
+                window.location.href = '/practice'; // Redirect to practice page
+            });
+
+            // Results button click event
+            $('#results-button').click(function() {
+                $(this).animate({ backgroundColor: "#45a049" }, 300)
+                    .animate({ backgroundColor: "#4CAF50" }, 300);
+                window.location.href = '/results'; // Redirect to results page
+            });
+        });
+    </script>
+</body>
+</html>

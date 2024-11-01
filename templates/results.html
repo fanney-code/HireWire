@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Results</title>
+</head>
+<body>
+    <div class="results">
+        <h1>Your Results</h1>
+        <p>Here are your practice results:</p>
+        <ul>
+            <li>Question 1: Answered well</li>
+            <li>Question 2: Needs improvement</li>
+            <li>Question 3: Excellent</li>
+        </ul>
+        <button onclick="location.href='/dashboard'">Back to Dashboard</button>
+    </div>
+</body>
+</html>

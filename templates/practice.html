@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Your CSS file -->
+    <title>Practice</title>
+</head>
+<body>
+    <h1>Practice Your Skills</h1>
+    <input type="text" id="answer" placeholder="Type your answer"/>
+    <button onclick="submitAnswer()">Submit</button>
+    <div id="response"></div>
+
+    <script>
+        async function submitAnswer() {
+            const answer = document.getElementById('answer').value;
+            const responseElement = document.getElementById('response');
+            responseElement.innerText = "Thinking...";
+
+            // Show loading page
+            window.location.href = '/'; // Redirect to Loading page
+
+            // Send the fetch request
+            const response = await fetch('/practice', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ answer: answer })
+            });
+
+            const data = await response.json();
+            responseElement.innerText = data.response;
+
+            // Optionally redirect to the results page
+            // setTimeout(function() {
+            //     window.location.href = '/results'; // Redirect to results after some time (optional)
+            // }, 2000); // Delay for 2 seconds (for demonstration)
+        }
+    </script>
+</body>
+</html>

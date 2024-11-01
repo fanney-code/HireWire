@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Login - HireWire</title>
+</head>
+<body>
+    <header>
+        <h1>HireWire</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/practice">Practice</a>
+            <a href="/results">Results</a>
+        </nav>
+    </header>
+    <main class="login">
+        <h2>Login to HireWire</h2>
+        <form action="/dashboard" method="POST" id="login-form">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Log In</button>
+        </form>
+        <p><a href="/templates/createAccount.html" class="go-back">Go Back</a></p>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 HireWire</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Your CSS file -->
+    <title>Loading...</title>
+</head>
+<body>
+    <div class="loading-page">
+        <img src="/static/ws-silicon - 03.png" alt="Logo" class="logo"> <!-- Replace with your logo path -->
+        <div class="counter">
+            <p>Loading...</p>
+            <h1 id="percentage">0%</h1>
+            <hr>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var counter = 0;
+            var interval = setInterval(function() {
+                $("#percentage").text(counter + "%");
+                $(".loading-page .counter hr").css("width", counter + "%");
+                counter++;
+                
+                if (counter > 100) {
+                    clearInterval(interval);
+                    window.location.href = '/create-account'; // Redirect to create account after loading
+                }
+            }, 50);
+        });
+    </script>
+</body>
+</html>
